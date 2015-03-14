@@ -1,2 +1,2 @@
 #!/bin/sh
-php myscript.php
+bin/php5/bin/php myscript.php
