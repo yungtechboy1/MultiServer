@@ -28,11 +28,14 @@ class NewConnection {
     public function Process(){
         if (isset($this->temp[$ip][$port])){
             if ($this->temp[$ip][$port] == 0){
-                
+                $buffer = $this->magic.$this->serverid."04F5FFFC97"."FFFF";
+                $this->start->writePacket($this->start->fsocket, $buffer, $this->ip, $port);
+                $this->temp[$ip][$port] = 1;
             }
         }else{
-            $buffer = $this->data;
+            $buffer = $this->magic.$this->serverid."0"."FFFF";
             $this->start->writePacket($this->start->fsocket, $buffer, $this->ip, $port);
+            $this->temp[$ip][$port] = 0;
         }
     }
 
